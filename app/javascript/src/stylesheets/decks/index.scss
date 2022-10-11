@@ -47,6 +47,34 @@
     }
   }
 
+  .view-add-csv {
+    border-radius: 20px;
+    margin: 0 auto 30px auto;
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    background: rgba(110, 60, 188, 0.5);
+    color: white;
+
+    p {
+      margin: 0;
+      padding-right: 20px;
+    }
+
+    form {
+      input {
+        padding-right: 20px;
+      }
+
+      .upload_file {
+        // display: none;
+        border-radius: 10px;
+        border: none;
+        padding: 5px 10px;
+      }
+    }
+  }
+
   .views-cont {
     display: grid;
     grid-template-columns: repeat(3, 25rem);

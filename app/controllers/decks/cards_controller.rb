@@ -3,6 +3,13 @@ class Decks::CardsController < ApplicationController
   before_action :set_card, only: %i[show edit update destroy]
   before_action :set_deck
 
+  def import
+    cards = params[:cards_file]
+    return redirect_to deck_cards_url(deck_code: @deck.code), notice: "Only CSV please." unless cards.content_type == "text/csv"
+    Decks::CsvImportCardsService.new.call(cards, @deck.id, current_user.id)
+    redirect_to deck_cards_url(deck_code: @deck.code), notice: "Cards imported." 
+  end
+
   def index
     @cards = Card.where(deck_id: @deck.id)
   end
@@ -23,7 +30,7 @@ class Decks::CardsController < ApplicationController
 
     respond_to do |format|
       if @card.save
-        format.html { redirect_to deck_cards_url(deck_id: @deck.id), notice: "Card was successfully created." }
+        format.html { redirect_to deck_cards_url(deck_code: @deck.code), notice: "Card was successfully created." }
         format.json { render :show, status: :created, location: @card }
       else
         format.html { render :new, status: :unprocessable_entity }
