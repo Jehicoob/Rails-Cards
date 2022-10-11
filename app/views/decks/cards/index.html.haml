@@ -3,6 +3,12 @@
     = link_to image_tag("icons8-left.png"), @deck
     %h3{:style => "color: #{@deck.font_color};"}= "Cards from #{@deck.name}"
 
+  .view-add-csv
+    %p Import cards from CSV file:
+    = form_with url: import_deck_cards_path(deck_code: @deck.code), method: :post do |f|
+      = f.file_field :cards_file, accept: ".csv", id: "attach_file"
+      = f.button "Upload", class: "upload_file", disabled: true 
+
   .views-cont
     - @cards.each do |card|
       .view-pre-card
@@ -14,3 +20,5 @@
 
     .cont-maker
       = link_to 'New Card', new_deck_card_path(@deck)
+
+= javascript_pack_tag 'cards_index'

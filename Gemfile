@@ -29,6 +29,7 @@ gem 'hamlit'
 gem "simple_form"
 gem "annotate"
 gem "devise"
+gem "debug", ">= 1.0.0"
 
 
 # Use Active Storage variant

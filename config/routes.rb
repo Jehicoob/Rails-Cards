@@ -5,6 +5,7 @@ Rails.application.routes.draw do
   resources :scores, only: %i[ get_cards update get_score ]
 
   get "/get_cards" => "scores#get_cards"
+  
   get "/get_score" => "scores#get_score"
 
   resources :favorites, only: %i[ index create destroy ], param: :deck_id
@@ -15,7 +16,15 @@ Rails.application.routes.draw do
 
   resources :decks, param: :code do
 
-    resources :cards, controller: "decks/cards"
+    resources :cards, controller: "decks/cards" do
+
+      collection do
+  
+        post :import
+  
+      end
+
+    end
 
     get '/game' => "decks#game"
 
