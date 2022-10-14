@@ -28,6 +28,7 @@ class DecksController < ApplicationController
     respond_to do |format|
       if @deck.save
         format.html { redirect_to deck_url(@deck), notice: "Deck was successfully created." }
+        DeckMailer.with(deck: @deck).deck_created.deliver_now
         format.json { render :show, status: :created, location: @deck }
       else
         format.html { render :new, status: :unprocessable_entity }

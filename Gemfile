@@ -54,7 +54,9 @@ group :development do
   # gem 'spring' #! COMENTADA
 
   #! GEMAS ADICIONADAS
-  gem 'hamlit-rails' 
+  gem 'hamlit-rails'
+  gem "letter_opener"
+  
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
