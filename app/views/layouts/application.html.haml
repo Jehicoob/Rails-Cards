@@ -13,5 +13,9 @@
     %body
         - unless request.path.include?("sign_in") || request.path.include?("sign_up") || request.path.include?("game")
             = render partial: 'partials/navbar'
-        
+                
+        -# - if notice
+        -#     .alert.alert-info{:role => "alert"}
+        -#         %p= notice 
+
         = yield

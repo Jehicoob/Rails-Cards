@@ -1,13 +1,36 @@
-.form-cards
-  = simple_form_for @card, url: url  do |f|
-    = f.error_notification
-    = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
+.view-form-cards
+  = simple_form_for @card, url: url do |f|
+    .form-deck-title
+      %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+        = image_tag "icons8-left.png", {"aria-hidden" => "true"}
+      %h3= title
 
-    .cards-input
-      = f.input :question
+    .form-cards-title
+      = f.error_notification
+      = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
 
-    .cards-input
-      = f.input :description
+    .form-cards-cont
+      .cards-input
+        %p Question:
+        = f.input :question, label: false
+      
+      .cards-attach
+        -# TODO: Mostrar imagen al actualizar
+        %p Attach Image:
+        = f.file_field :img_question, multiple: false, accept: ".jpg,.png", id: "question_file", class: 'cards_form_file'
+        %img(src="" alt="" class="question_file")
 
-    .form-cards-actions
-      = f.button :submit, :class => "cards-button"
+      .cards-input
+        %p Answer:
+        = f.input :description, label: false
+      
+      .cards-attach
+        %p Attach Image:
+        = f.file_field :img_answer, multiple: false, accept: ".jpg,.png", id: "answer_file", class: 'cards_form_file'
+
+        %img(src="" alt="" class="answer_file")
+
+      .form-cards-actions
+        = f.button :submit, :class => "cards-button"
+
+= javascript_pack_tag 'cards_form'

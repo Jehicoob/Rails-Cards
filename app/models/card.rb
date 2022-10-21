@@ -16,12 +16,9 @@ class Card < ApplicationRecord
 
   has_one :score, dependent: :destroy
 
+  has_one_attached :img_question, dependent: :destroy
+  has_one_attached :img_answer, dependent: :destroy
+
+
   validates :question, :description, presence: true
-
-  # after_create :set_score
-
-  # def set_score
-  #   self.score = Score.create()
-  # end
-
 end

@@ -1,27 +1,67 @@
-.form-decks
+.view-form-deck 
   = simple_form_for(@deck) do |f|
-    = f.error_notification
-    = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
-
-    .decks-input
-      %p Nombre de la baraja:
-      = f.input :name, label: false
-
-    .decks-input
-      %p Description breve:
-      = f.input :description, label: false
-
-    .decks-input
-      %p Categoria: 
-      = f.association :category, label: false
-
-    .decks-input
-      %p Color de fuente:
-      = f.color_field :font_color, label: false
+    .form-deck-title
+      %button.close{"aria-label" => "Close", "data-dismiss" => "modal", :type => "button"}
+        = image_tag "icons8-left.png", {"aria-hidden" => "true"}
+      %h3= title
     
-    .decks-input
-      %p Color de baraja:
-      = f.color_field :deck_color, label: false
+    .form-deck-cont
+      = f.error_notification
+      = f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present?
 
-    .form-decks-actions
-      = f.button :submit, :class => "decks-button"
+      .decks-input
+        %p Deck name:
+        = f.input :name, label: false
+
+      .decks-input
+        %p Description:
+        = f.input :description, label: false
+
+      .decks-input
+        %p Category: 
+        = f.association :category, label: false
+
+      .form-select
+        .select-input
+          %p Font Color:
+          = f.select :font_color, options_for_select([["White", "#FFFFFF", {class: "colors"}],
+                                                      ["Silver", "#C0C0C0", {class: "colors"}],
+                                                      ["Gray", "#808080", {class: "colors"}],
+                                                      ["Black", "#000000", {class: "colors"}],
+                                                      ["Red", "#FF0000", {class: "colors"}],
+                                                      ["Maroon", "#800000", {class: "colors"}],
+                                                      ["Yellow", "#FFFF00", {class: "colors"}],
+                                                      ["Olive", "#808000", {class: "colors"}],
+                                                      ["Lime", "#00FF00", {class: "colors"}],
+                                                      ["Green", "#008000", {class: "colors"}],
+                                                      ["Aqua", "#00FFFF", {class: "colors"}],
+                                                      ["Teal", "#008080", {class: "colors"}],
+                                                      ["Blue", "#0000FF", {class: "colors"}],
+                                                      ["Navy", "#000080", {class: "colors"}],
+                                                      ["Fuchsia", "#FF00FF", {class: "colors"}],
+                                                      ["Purple", "#800080", {class: "colors"}]])
+        
+        .select-input
+          %p Deck Color:
+          = f.select :deck_color, options_for_select([["White", "#FFFFFF", {class: "colors"}],
+                                                      ["Silver", "#C0C0C0", {class: "colors"}],
+                                                      ["Gray", "#808080", {class: "colors"}],
+                                                      ["Black", "#000000", {class: "colors"}],
+                                                      ["Red", "#FF0000", {class: "colors"}],
+                                                      ["Maroon", "#800000", {class: "colors"}],
+                                                      ["Yellow", "#FFFF00", {class: "colors"}],
+                                                      ["Olive", "#808000", {class: "colors"}],
+                                                      ["Lime", "#00FF00", {class: "colors"}],
+                                                      ["Green", "#008000", {class: "colors"}],
+                                                      ["Aqua", "#00FFFF", {class: "colors"}],
+                                                      ["Teal", "#008080", {class: "colors"}],
+                                                      ["Blue", "#0000FF", {class: "colors"}],
+                                                      ["Navy", "#000080", {class: "colors"}],
+                                                      ["Fuchsia", "#FF00FF", {class: "colors"}],
+                                                      ["Purple", "#800080", {class: "colors"}]])
+
+      .form-decks-actions
+        = f.button :submit, :class => "decks-button"
+
+= javascript_pack_tag 'decks_form'
+          

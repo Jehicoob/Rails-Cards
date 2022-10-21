@@ -1,0 +1,16 @@
+.cont-mailer{ :style => "
+  background: rgba(114, 103, 203, 0.6);
+  font-family: Arial, Helvetica, sans-serif;
+  padding: 20px;
+  width: 30rem;
+  margin: 0 auto;
+  border-radius: 10px;
+  "
+}
+  %h2= "hi #{@deck.owner.account.username}!" 
+  %h2
+    Your new
+    %strong= @deck.name
+    deck was successfully created.
+  %h3= @deck.description
+  = link_to "See your deck here!", @deck

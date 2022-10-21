@@ -15,10 +15,14 @@
         %h2= card.question
         %p= card.description 
         .pre-card-btn
-          = link_to 'Edit', edit_deck_card_path(deck_code: @deck.code, id: card.id)
+          = link_to 'Edit', edit_deck_card_path(deck_code: @deck.code, id: card.id), {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#cards-modal'}
           = link_to 'Delete', deck_card_path(deck_code: @deck.code, id: card.id), :method => :delete, :data => { :confirm => 'Are you sure?' }
 
     .cont-maker
-      = link_to 'New Card', new_deck_card_path(@deck)
+      = link_to 'New Card', new_deck_card_path(@deck), {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#cards-modal'}
+  
+  #cards-modal.modal.hide.fade{"aria-hidden" => "true", "aria-labelledby" => "myModalLabel", :role => "dialog"}
+    .modal-dialog.form-cards{:role => "document"}
+      .modal-content
 
 = javascript_pack_tag 'cards_index'

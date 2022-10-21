@@ -1,0 +1,2 @@
+$("#cards-modal").find(".modal-content").html("<%= j render 'form', title: "New Card", url: deck_cards_path(deck_id: @deck.id) %>");
+$("#cards-modal").modal();

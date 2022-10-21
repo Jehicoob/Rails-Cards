@@ -20,11 +20,13 @@
       = image_tag 'icons8-busqueda-48.png', alt: '', height: '', width: '', class: ''
       %input{:placeholder => "Buscar barajas", :type => "text"}
 
+    -# TODO: Error cuando no esta el render en el yield
     .navbar-options
       - unless request.path.include?("cards")
-        = link_to "Create Deck", new_deck_path, method: :get, class: 'navbar-boton-log'
+        = link_to 'New Deck', new_deck_path, {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#new-deck-modal', class: 'navbar-boton-log' }
+
       - if request.path.include?("cards")
-        = link_to "Create Card", new_deck_card_path, method: :get, class: 'navbar-boton-log'
+        = link_to "Create Card", new_deck_card_path, {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#cards-modal', class: 'navbar-boton-log'}
       
       .navbar-profile
     

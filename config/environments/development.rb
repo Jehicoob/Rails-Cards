@@ -38,6 +38,26 @@ Rails.application.configure do
 
   config.action_mailer.perform_caching = false
 
+  # Letter opener
+  config.action_mailer.delivery_method = :letter_opener
+  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.default_url_options = { :host => "localhost:3000" }
+  config.action_mailer.perform_caching = false
+  config.action_mailer.perform_deliveries = true
+
+  # Mailtrap
+  # config.action_mailer.delivery_method = :smtp
+  # config.action_mailer.smtp_settings = {
+  #   :user_name => '4f91460ced85f7',
+  #   :password => 'e772c5fd67f39d',
+  #   :address => 'smtp.mailtrap.io',
+  #   :domain => 'smtp.mailtrap.io',
+  #   :port => '2525',
+  #   :authentication => :cram_md5
+  # }
+
+
+
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
 
