@@ -11,12 +11,15 @@ class DecksController < ApplicationController
   end
 
   def show
-    @card = Card.where(deck_id: @deck.id)
-    
+    @cards = Card.where(deck_id: @deck.id)
   end
 
   def new
     @deck = Deck.new
+    respond_to do |format|
+      format.html
+      format.js
+    end
   end
 
   def edit

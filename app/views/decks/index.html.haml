@@ -11,4 +11,7 @@
           = link_to 'Details', deck
           = link_to 'Delete', deck, :method => :delete, :data => { :confirm => 'All cards will be removed, are you sure?' }
     .cont-maker
-      = link_to 'New Deck', new_deck_path
+      = link_to 'New Deck', new_deck_path, {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#deck-modal'}
+      = render 'decks/decks_modal'
+
+

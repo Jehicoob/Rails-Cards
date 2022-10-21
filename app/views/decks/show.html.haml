@@ -16,7 +16,7 @@
       .cont-deck
 
         = image_tag "juego-de-cartas-black.png"
-        %p= "#{@card.length} Cards"
+        %p= "#{@cards.length} Cards"
 
       .cont-deck
 
@@ -55,11 +55,14 @@
 
   .cont-view-deck-btn
 
-    - if @card.nil?
+    - if @cards.blank?
       = link_to 'Create Card', new_deck_card_path(@deck)
     - else 
       -# = link_to 'Start', deck_card_path(deck_code: @deck.code, id: @card.id)
       = link_to 'Start', deck_game_path(deck_code: @deck.code)
       = link_to 'Cards', deck_cards_path(deck_code: @deck.code)
       
-    = link_to 'Edit', edit_deck_path(@deck)
+    = link_to 'Edit', edit_deck_path(@deck), {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#deck-modal'}
+    = render 'decks/decks_modal'
+
+
