@@ -1,0 +1,28 @@
+.views
+
+  .views-search
+    %h3= "Resultados de: #{@term}"
+
+  .views-title
+    %h3 Decks
+      
+  .views-cont
+    - @decks.each do |deck|
+      .view-pre-card{ :style => "background: #{deck.deck_color};" }
+        %h3{:style => "color: #{deck.font_color};"}= deck.name
+        %p{:style => "color: #{deck.font_color};"}= deck.description
+        .pre-card-btn
+          = link_to 'Details', deck
+
+  .views-title
+    %h3 Cards
+
+  .views-cont
+    - @cards.each do |card|
+      .view-pre-card
+        %h2= card.question
+        %p= card.description 
+        .pre-card-btn
+          = link_to 'Edit', edit_deck_card_path(deck_code: card.deck.code, id: card.id), {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#cards-modal'}
+          = render 'decks/cards/cards_modal'
+          = link_to 'Deck', card.deck
