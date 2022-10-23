@@ -24,11 +24,8 @@
         %p Qualification
 
       .cont-deck.profile
-
-        - if @deck.owner.account.avatar.blank?
-          = image_tag url_for("https://robohash.org/#{current_user.email}")
-        - else
-          = image_tag url_for(@deck.owner.account.avatar)
+        = image_tag url_for("https://robohash.org/#{@deck.owner.account.nickname}") unless @deck.owner.account.avatar.attached?
+        = image_tag url_for(@deck.owner.account.avatar) if @deck.owner.account.avatar.attached?
 
         %p= @deck.owner.account.username
 
