@@ -33,5 +33,7 @@ Rails.application.routes.draw do
   root 'welcome#index'
 
   get '/user' => "decks#index", :as => :user_root
+
+  get "/search_all" => "search#search_all"
   
 end

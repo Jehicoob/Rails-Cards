@@ -1,13 +1,11 @@
 class DecksController < ApplicationController
 
   before_action :authenticate_user! 
-  
   before_action :set_deck, only: %i[ show edit update destroy game]
-
   before_action :set_category, only: %i[ show ]
 
   def index
-    @decks = Deck.where(owner_id: current_user)
+    @decks = Deck.where(owner_id: current_user.id)
   end
 
   def show

@@ -16,11 +16,13 @@
       = link_to "Sign In", new_user_session_path, method: :get, class: 'navbar-boton-log'
 
   - if user_signed_in?
-    .navbar-search
+    = form_with url: search_all_path, method: :get, :html => {:class => "navbar-search"} do |f|
       = image_tag 'icons8-busqueda-48.png', alt: '', height: '', width: '', class: ''
-      %input{:placeholder => "Buscar barajas", :type => "text"}
+      = f.text_field :term, placeholder: "Busca por nombre o palabra ...."
+      = f.button "Search"
+      
 
-    -# TODO: Error cuando no esta el render en el yield
+    -# TODO: Error cuando no esta el render del form en el yield
     .navbar-options
       - unless request.path.include?("cards")
         = link_to 'New Deck', new_deck_path, {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#new-deck-modal', class: 'navbar-boton-log' }
@@ -33,7 +35,8 @@
         .dropdown
 
           %button#dropdownMenuButton.btn.btn-secondary.dropdown-toggle{"aria-expanded" => "false", "aria-haspopup" => "true", "data-toggle" => "dropdown", :type => "button"}
-            = image_tag (current_user.account.avatar), alt: '', height: '50', width: '50', class: 'profile-img'
+            = image_tag url_for("https://robohash.org/#{current_user.account.nickname}"), class: 'profile-img' unless current_user.account.avatar.attached?
+            = image_tag url_for(current_user.account.avatar), class: 'profile-img' if current_user.account.avatar.attached?
             %p= current_user.account.username
 
           .dropdown-menu{"aria-labelledby" => "dropdownMenuButton"}

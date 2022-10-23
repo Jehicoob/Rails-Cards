@@ -64,6 +64,8 @@ class Decks::CardsController < ApplicationController
   private
 
     def set_deck
+      # @deck = Deck.find_by_code(params[:deck_code])
+      # find porque lo busca de acuerdo al deck_id del card, ya que no se puede obtener el code desde la vista de la card
       @deck = Deck.find_by_code(params[:deck_code])
     end
 
