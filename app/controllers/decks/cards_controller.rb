@@ -70,7 +70,7 @@ class Decks::CardsController < ApplicationController
     end
 
     def card_params
-      params.require(:card).permit(:question, :description)
+      params.require(:card).permit(:question, :img_question, :description, :img_answer )
     end
 
     def set_card

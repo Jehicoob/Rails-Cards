@@ -18,7 +18,7 @@
   - if user_signed_in?
     = form_with url: search_all_path, method: :get, :html => {:class => "navbar-search"} do |f|
       = image_tag 'icons8-busqueda-48.png', alt: '', height: '', width: '', class: ''
-      = f.text_field :term, placeholder: "Busca por nombre o palabra ...."
+      = f.text_field :term, placeholder: "Search by name or word...."
       = f.button "Search"
       
 

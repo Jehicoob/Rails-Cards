@@ -20,15 +20,17 @@ class Deck < ApplicationRecord
 
   has_many :cards, dependent: :destroy
   has_many :favorites, dependent: :destroy
+  has_many :deck_scores, dependent: :destroy
+  has_many :card_scores, dependent: :destroy
 
   validates :name, :description, presence: true
   validates :name, uniqueness: { case_insensitive: false }
 
-  before_create :create_code
+  # before_create :create_code
 
-  def create_code
-    self.code = "#{owner_id}#{SecureRandom.hex(4)}"
-  end
+  # def create_code
+  #   self.code = "#{owner_id}#{SecureRandom.hex(4)}"
+  # end
 
   def to_param
     code

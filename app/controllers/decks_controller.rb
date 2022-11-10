@@ -1,8 +1,7 @@
 class DecksController < ApplicationController
 
   before_action :authenticate_user! 
-  before_action :set_deck, only: %i[ show edit update destroy game]
-  before_action :set_category, only: %i[ show ]
+  before_action :set_deck, only: %i[ show edit update destroy ]
 
   def index
     @decks = Deck.where(owner_id: current_user.id)
@@ -10,6 +9,12 @@ class DecksController < ApplicationController
 
   def show
     @cards = Card.where(deck_id: @deck.id)
+    service = DeckScores::CreateOrFindDeckScoreService.new(current_user, @deck)
+    if service.perform
+      @deck_score = service.output
+    else
+      render json: service.errors
+    end
   end
 
   def new
@@ -24,10 +29,13 @@ class DecksController < ApplicationController
   end
 
   def create
-    @deck = Deck.new(deck_params)
-    @deck.owner = current_user
+
+    service = Decks::CreateDeckService.new(current_user, deck_params)
+
     respond_to do |format|
-      if @deck.save
+
+      if service.perform
+        @deck = service.output
         format.html { redirect_to deck_url(@deck), notice: "Deck was successfully created." }
         DeckMailer.with(deck: @deck).deck_created.deliver_now
         format.json { render :show, status: :created, location: @deck }
@@ -35,7 +43,9 @@ class DecksController < ApplicationController
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @deck.errors, status: :unprocessable_entity }
       end
+
     end
+
   end
 
   def update
@@ -59,18 +69,10 @@ class DecksController < ApplicationController
     end
   end
 
-  def game
-    @cards = Card.where(deck_id: @deck.id)
-  end
-
   private
 
     def set_deck
       @deck = Deck.find_by_code(params[:code] ||= params[:deck_code])
-    end
-
-    def set_category
-      @category = Category.find_by_id(@deck.category_id)
     end
 
     def deck_params

@@ -1,5 +1,7 @@
 class SearchController < ApplicationController
 
+  before_action :authenticate_user! 
+
   def search_all
     @term = params[:term]
     # raise @term.to_yaml
