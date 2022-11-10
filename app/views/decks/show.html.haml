@@ -43,12 +43,12 @@
       .cont-deck.rigth
 
         %p= "Your score: #{@deck_score.score}"
-        = image_tag '', alt: '', height: '', width: '', class: ''
+        = image_tag 'score.png', alt: '', height: '', width: '', class: ''
 
       .cont-deck.rigth
 
         %p= "Successful cards: #{@deck_score.successful_cards} / #{@cards.length}"
-        = image_tag '', alt: '', height: '', width: '', class: ''
+        = image_tag 'success.png', alt: '', height: '', width: '', class: ''
 
   .cont-view-deck-btn
 
