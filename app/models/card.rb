@@ -14,11 +14,9 @@ class Card < ApplicationRecord
   belongs_to :deck
   belongs_to :user
 
-  has_one :score, dependent: :destroy
-
+  has_many :card_scores, dependent: :destroy
   has_one_attached :img_question, dependent: :destroy
   has_one_attached :img_answer, dependent: :destroy
-
 
   validates :question, :description, presence: true
 end

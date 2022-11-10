@@ -2,32 +2,26 @@ Rails.application.routes.draw do
 
   devise_for :users
 
-  resources :scores, only: %i[ get_cards update get_score ]
-
-  get "/get_cards" => "scores#get_cards"
-  
-  get "/get_score" => "scores#get_score"
+  resources :card_scores, only: %i[ update ]
+  get "/get_cards" => "card_scores#get_cards"
+  get "/get_score" => "card_scores#get_score"
 
   resources :favorites, only: %i[ index create destroy ], param: :deck_id
-
+  
   resources :categories
-
+  
   resources :accounts, only: %i[ show edit update destroy ]
+  
+  resources :deck_scores, only: %i[ update ]
+  get "/get_deck_score" => "deck_scores#get_deck_score"
+  get "/get_total_score" => "deck_scores#get_total_score"
 
   resources :decks, param: :code do
-
     resources :cards, controller: "decks/cards" do
-
       collection do
-  
-        post :import
-  
+        post :import 
       end
-
     end
-
-    get '/game' => "decks#game"
-
   end
 
   root 'welcome#index'
@@ -35,5 +29,9 @@ Rails.application.routes.draw do
   get '/user' => "decks#index", :as => :user_root
 
   get "/search_all" => "search#search_all"
+
+  get '/game' => "games#game"
+
+  get "/result" => "games#result"
   
 end

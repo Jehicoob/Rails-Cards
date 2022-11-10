@@ -80,3 +80,22 @@ rails g devise:views
 :string, :text, :integer, :float, :decimal, :datetime, :timestamp, :time, :date, :binary, :boolean
 
 carrierwave gem
+
+rails g model CardScore user:references deck:references card:references total_score:float plays:integer average:float
+rails g model DeckScore user:references deck:references score:float qualification:float successful_cards:integer
+
+    # score = DeckScore.create(
+    #   user_id: @owner.id,
+    #   score: 0.0,
+    #   qualification: 0.0,
+    #   successful_cards: 0
+    # )
+
+    # @deck.deck_scores << score
+
+    # score = DeckScore.create(
+    #   user_id: @owner.id,
+    #   score: 0.0,
+    #   qualification: 0.0,
+    #   successful_cards: 0
+    # )

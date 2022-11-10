@@ -20,8 +20,8 @@
 
       .cont-deck
 
-        = image_tag '', alt: '', height: '', width: '', class: ''
-        %p Qualification
+        = image_tag "Star 2.png"
+        %p= @deck_score.qualification
 
       .cont-deck.profile
         = image_tag url_for("https://robohash.org/#{@deck.owner.account.nickname}") unless @deck.owner.account.avatar.attached?
@@ -42,23 +42,18 @@
       
       .cont-deck.rigth
 
-        %p Your score
+        %p= "Your score: #{@deck_score.score}"
         = image_tag '', alt: '', height: '', width: '', class: ''
 
       .cont-deck.rigth
 
-        %p Successful cards
+        %p= "Successful cards: #{@deck_score.successful_cards} / #{@cards.length}"
         = image_tag '', alt: '', height: '', width: '', class: ''
 
   .cont-view-deck-btn
 
-    - if @cards.blank?
-      = link_to 'Create Card', new_deck_card_path(@deck)
-    - else 
-      -# = link_to 'Start', deck_card_path(deck_code: @deck.code, id: @card.id)
-      = link_to 'Start', deck_game_path(deck_code: @deck.code)
-      = link_to 'Cards', deck_cards_path(deck_code: @deck.code)
-      
+    = link_to 'Start', game_path(deck_code: @deck.code), id: "startGame" unless @cards.blank?
+    = link_to 'Cards', deck_cards_path(deck_code: @deck.code) 
     = link_to 'Edit', edit_deck_path(@deck), {:remote => true, 'data-toggle' =>  "modal", 'data-target' => '#deck-modal'}
     = render 'decks/decks_modal'
 

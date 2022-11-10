@@ -15,20 +15,19 @@
         = f.input :question, label: false
       
       .cards-attach
-        -# TODO: Mostrar imagen al actualizar
-        %p Attach Image:
+        %p Question Image:
         = f.file_field :img_question, multiple: false, accept: ".jpg,.png", id: "question_file", class: 'cards_form_file'
-        %img(src="" alt="" class="question_file")
+        = image_tag url_for(@card.img_question), class: 'question_file' if @card.img_question.attached?
 
       .cards-input
         %p Answer:
         = f.input :description, label: false
       
       .cards-attach
-        %p Attach Image:
+        %p Answer Image:
         = f.file_field :img_answer, multiple: false, accept: ".jpg,.png", id: "answer_file", class: 'cards_form_file'
+        = image_tag url_for(@card.img_answer), class: 'answer_file' if @card.img_answer.attached?
 
-        %img(src="" alt="" class="answer_file")
 
       .form-cards-actions
         = f.button :submit, :class => "cards-button"

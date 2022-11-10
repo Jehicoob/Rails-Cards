@@ -16,8 +16,7 @@ class ScoresController < ApplicationController
   def get_score
 
     @score = Score.where(card_id: params[:card_id], user_id: current_user.id).first
-
-    # if @score.length == 0
+    
     if @score.nil?
 
       pp "Dentro del if"

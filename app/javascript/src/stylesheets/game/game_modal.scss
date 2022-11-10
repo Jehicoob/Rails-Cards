@@ -1,0 +1,43 @@
+.view-game-modal {
+  text-align: center;
+  color: white;
+  background: linear-gradient(180deg, #7267cb 0%, #6e3cbc 100%);
+  padding: 3rem;
+
+  p {
+    margin: 10px 0px;
+  }
+}
+
+.modal-qualification {
+  margin: 20px;
+
+  ul {
+    margin: 0;
+    padding: 0;
+
+    li {
+      display: inline-block;
+
+      img {
+        width: 2rem;
+        transition: 0.5s;
+
+        &:hover {
+          transform: scale(1.5);
+        }
+      }
+    }
+  }
+}
+
+.modal-buttons {
+  a {
+    color: #6e3cbc;
+    padding: 5px 15px;
+    margin: 0 10px;
+    background: #b8e4f0;
+    border: none;
+    border-radius: 10px;
+  }
+}

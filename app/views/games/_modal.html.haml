@@ -1,0 +1,10 @@
+.view-game-modal
+  %h3 Quiz Complete!
+  %p= @deck.name 
+  %p.deck-score
+  %p.succesfull_cards
+  .modal-qualification
+    = render 'qualification'
+  .modal-buttons
+    = link_to 'Try Again', game_path(deck_code: @deck.code)
+    = link_to 'Done', deck_path(@deck)

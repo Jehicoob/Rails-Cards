@@ -120,9 +120,12 @@
   }
 
   .views-title-show {
-    width: 100%;
-    margin-bottom: 30px;
+    // width: 100%;
+    margin: 30px;
+    // margin-bottom: 30px;
+    // margin-top: 30px;
     padding: 0px 100px;
+    border-radius: 30px;
 
     .image-title {
       display: flex;
