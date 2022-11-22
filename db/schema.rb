@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_11_02_153458) do
+ActiveRecord::Schema.define(version: 2022_11_11_174339) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -62,6 +62,7 @@ ActiveRecord::Schema.define(version: 2022_11_02_153458) do
     t.float "average"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "status"
     t.index ["card_id"], name: "index_card_scores_on_card_id"
     t.index ["deck_id"], name: "index_card_scores_on_deck_id"
     t.index ["user_id"], name: "index_card_scores_on_user_id"

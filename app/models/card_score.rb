@@ -11,6 +11,7 @@
 #  average     :float
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
+#  status      :string
 #
 class CardScore < ApplicationRecord
   belongs_to :user

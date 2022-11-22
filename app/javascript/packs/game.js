@@ -11,6 +11,7 @@ console.log(deck_code);
 (function (window, undefined) {
   cards = getCards();
   changeText(cards, current_card);
+  $(".progress-bg").css("width", `0%`);
 })(window);
 
 $(".view-game").on("click", ".flip-card", showBack);
@@ -18,8 +19,8 @@ $(".view-game").on("click", ".flip-card", showBack);
 $(".view-game").on("click", ".points", function () {
   $(".points").prop("disabled", true);
   let points = this.value;
-  calcDeckScoreParams(points);
-  updateCardScore(points, cards, current_card, deck_code);
+  var status = calcDeckScoreParams(points);
+  updateCardScore(status, points, cards, current_card, deck_code);
   $(".next-card").show();
 });
 
@@ -30,19 +31,32 @@ $(".view-game").on("click", ".next-card", function () {
     changeText(cards, current_card);
     reset();
   } else {
+    current_card += 1;
     updateDeckScore(deck_code, deck_score_succesfull_cards);
     openResultModal(deck_code);
     $(".deck-score").text(`Score: ${deck_score_total_score}`);
     $(".succesfull_cards").text(
       `${deck_score_succesfull_cards} out of ${cards.length}`
     );
+    $(".percent").text(
+      `${((100 / cards.length) * deck_score_succesfull_cards).toFixed(1)}%`
+    );
   }
+  updateProgressBar(current_card);
 });
 
 $(".view-game").on("click", ".qualification", function (e) {
   $(".qualification").hide();
   updateDeckScoreQualification(this.value, deck_code);
 });
+
+// Progress Bar
+
+function updateProgressBar(current_card) {
+  var change = 100 / cards.length;
+  var percent = change * (current_card - 1);
+  $(".progress-bg").css("width", `${percent}%`);
+}
 
 // functions
 
@@ -105,7 +119,7 @@ function getScore(card_id, deck_code) {
   return result;
 }
 
-function updateCardScore(points, cards, current_card, deck_code) {
+function updateCardScore(status, points, cards, current_card, deck_code) {
   var score = getScore(cards[current_card - 1].id, deck_code);
 
   var plays = score.plays + 1;
@@ -121,6 +135,7 @@ function updateCardScore(points, cards, current_card, deck_code) {
         total_score: total_score,
         plays: plays,
         average: average,
+        status: status,
       },
     },
   }).done(function (data) {
@@ -154,10 +169,15 @@ function openResultModal(deck_code) {
 // Deck Score
 
 function calcDeckScoreParams(points) {
+  var result;
   deck_score_total_score += points;
   if (points >= 3) {
     deck_score_succesfull_cards += 1;
+    result = "passed";
+  } else {
+    result = "reprobate";
   }
+  return result;
 }
 
 function updateDeckScoreQualification(qualification, deck_code) {

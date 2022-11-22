@@ -2,6 +2,11 @@
   %h3 Quiz Complete!
   %p= @deck.name 
   %p.deck-score
+  .graph-content
+    .percent-content
+      %p.percent
+      %p Accuracy
+    = cardscore_by_status 
   %p.succesfull_cards
   .modal-qualification
     = render 'qualification'

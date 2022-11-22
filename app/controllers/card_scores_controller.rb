@@ -45,7 +45,7 @@ class CardScoresController < ApplicationController
     end
 
     def card_score_params
-      params.require(:card_score).permit(:total_score, :plays, :average)
+      params.require(:card_score).permit(:total_score, :plays, :average, :status)
     end
 
 end
