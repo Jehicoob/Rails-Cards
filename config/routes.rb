@@ -33,5 +33,15 @@ Rails.application.routes.draw do
   get '/game' => "games#game"
 
   get "/result" => "games#result"
+
+  # namespace :charts do
+  #   get "get_scores"
+  # end
+
+  resources :charts, only: [] do
+    collection do
+      get 'cardscore_by_status'
+    end
+  end
   
 end

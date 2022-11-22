@@ -19,7 +19,8 @@ class CardScores::CreateOrFindCardScoreService
     @card_score = CardScore.create_with(
       total_score: 0.0,
       plays: 0,
-      average: 0.0
+      average: 0.0,
+      status: "",
     ).find_or_create_by(
       user_id: @user.id,
       deck_id: @deck.id,

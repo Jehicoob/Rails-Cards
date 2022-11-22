@@ -20,4 +20,5 @@ Turbolinks.start();
 ActiveStorage.start();
 
 import "bootstrap";
+import "chartkick/chart.js"; // grapichs
 import "../src/stylesheets/application";

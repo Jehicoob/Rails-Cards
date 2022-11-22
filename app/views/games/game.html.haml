@@ -1,7 +1,9 @@
 .views
   .view-game
 
-    .barra-progres
+    .cont-bar-progress
+      .progress.bar 
+        .progress-bar.progress-bg
 
     .game-header{:style => "background: #{@deck.deck_color};" }
       %h2{:style => "color: #{@deck.font_color};"}= @deck.name

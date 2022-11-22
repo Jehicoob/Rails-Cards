@@ -140,20 +140,15 @@
   }
 }
 
-.barra-progres {
-  border-radius: 20px;
+.bar {
   width: 830px;
   height: 30px;
-  margin-left: auto;
-  margin-right: auto;
+  border-radius: 20px;
   background: #e5e5e5;
   border: 3px solid #7267cb;
+}
 
-  div {
-    width: 7%;
-    height: 30px;
-    border-radius: 20px;
-
-    background-color: #7267cb;
-  }
+.progress-bg {
+  background: #7267cb;
+  transition: all 0.5s;
 }
